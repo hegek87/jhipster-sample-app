@@ -20,6 +20,10 @@ angular.module('jhipsterApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('settings');
                         return $translate.refresh();
+                    }],
+
+                    settingsAccount: ['Principal', function(Principal) {
+                        return Principal.identity(true);
                     }]
                 }
             });
