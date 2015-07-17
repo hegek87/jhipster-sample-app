@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('jhipsterApp')
-    .controller('SettingsController', function ($scope, Principal, Auth, Language, $translate, settingsAccount) {
+    .controller('SettingsController', function ($scope, Principal, Auth, Language, $translate) {
         $scope.success = null;
         $scope.error = null;
-        $scope.settingsAccount = settingsAccount;
+        Principal.identity(true).then(function(account) {
+            $scope.settingsAccount = account;
+        });
 
         $scope.save = function () {
             Auth.updateAccount($scope.settingsAccount).then(function() {

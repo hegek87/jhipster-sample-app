@@ -32,7 +32,7 @@ angular.module('jhipsterApp')
             }
         };
     }])
-    .directive('hasRole', ['Principal', function (Principal) {
+    .directive('hasRole', ['Principal', '$timeout', function (Principal, $timeout) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -48,7 +48,7 @@ angular.module('jhipsterApp')
                             setVisible();
                         }
 
-                        result = Principal.isInRole(role);
+                        result = $timeout(Principal.isInRole(role), 0);
                         if (result) {
                             setVisible();
                         } else {
